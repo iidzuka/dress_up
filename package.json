@@ -1,7 +1,7 @@
 {
   "name": "anime_graph",
   "version": "1.0.0",
-  "main": "js/index.js",
+  "main": "./dist/js/client-bundle.js",
   "repository": "git@github.com:iidzuka/anime_graph.git",
   "author": "iidzuka <taki.hiyoshi@gmail.com>",
   "license": "MIT",
@@ -30,7 +30,11 @@
     }
   },
   "dependencies": {
-    "babel-polyfill": "^6.16.0"
+    "babel-polyfill": "^6.16.0",
+    "browser-sync": "^2.18.5",
+    "electron": "^1.4.12",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
@@ -50,7 +54,11 @@
     "gulp-eslint": "^3.0.1",
     "gulp-flowtype": "^1.0.0",
     "gulp-mocha": "^3.0.1",
+    "gulp-postcss": "^6.2.0",
+    "gulp-pug": "^3.2.0",
+    "gulp-sass": "^2.3.2",
     "mocha": "^3.2.0",
+    "postcss-cssnext": "^2.9.0",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
     "webpack-stream": "^3.2.0"
