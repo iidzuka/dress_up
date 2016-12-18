@@ -1,37 +1,9 @@
-const { app, BrowserWindow } = require('electron');
+import Menu from '../shared/Menu';
 
-const path = require('path');
-const url = require('url');
+const menu = new Menu();
 
-let win;
-const createWindow = () => {
-  win = new BrowserWindow({
-    width: 800,
-    height: 600,
-    resizable: false,
-    useContentSize: true,
-  });
-  win.loadURL(url.format({
-    pathname: path.join(path.resolve(''), '/dist/index.html'),
-    protocol: 'file:',
-    slashes: true,
-  }));
-
-  win.webContents.openDevTools();
-
-  win.on('closed', () => {
-    win = null;
-  });
-};
-
-app.on('ready', createWindow);
-
-app.on('window-all-closed', () => {
-  app.quit();
-});
-
-app.on('activate', () => {
-  if (win === null) {
-    createWindow();
-  }
-});
+menu.addMenu({ tabName: 'mainMenu', name: 'config' });
+menu.addMenu({ tabName: 'mainMenu', name: 'config2' });
+menu.addMenu({ tabName: 'mainMenu', name: 'config3' });
+menu.addMenu({ tabName: 'headDress', name: 'headDress' });
+console.log(menu)

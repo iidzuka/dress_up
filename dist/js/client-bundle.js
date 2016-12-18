@@ -46,63 +46,95 @@
 
 	'use strict';
 	
-	var _require = __webpack_require__(1),
-	    app = _require.app,
-	    BrowserWindow = _require.BrowserWindow;
+	var _Menu = __webpack_require__(1);
 	
-	var path = __webpack_require__(2);
-	var url = __webpack_require__(3);
+	var _Menu2 = _interopRequireDefault(_Menu);
 	
-	var win = void 0;
-	var createWindow = function createWindow() {
-	  win = new BrowserWindow({
-	    width: 800,
-	    height: 600,
-	    resizable: false,
-	    useContentSize: true
-	  });
-	  win.loadURL(url.format({
-	    pathname: path.join(path.resolve(''), '/dist/index.html'),
-	    protocol: 'file:',
-	    slashes: true
-	  }));
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	  win.webContents.openDevTools();
+	var menu = new _Menu2.default();
 	
-	  win.on('closed', function () {
-	    win = null;
-	  });
-	};
-	
-	app.on('ready', createWindow);
-	
-	app.on('window-all-closed', function () {
-	  app.quit();
-	});
-	
-	app.on('activate', function () {
-	  if (win === null) {
-	    createWindow();
-	  }
-	});
+	menu.addMenu({ tabName: 'mainMenu', name: 'config' });
+	menu.addMenu({ tabName: 'mainMenu', name: 'config2' });
+	menu.addMenu({ tabName: 'mainMenu', name: 'config3' });
+	menu.addMenu({ tabName: 'headDress', name: 'headDress' });
+	console.log(menu);
 
 /***/ },
 /* 1 */
 /***/ function(module, exports) {
 
-	module.exports = require("electron");
-
-/***/ },
-/* 2 */
-/***/ function(module, exports) {
-
-	module.exports = require("path");
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	module.exports = require("url");
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var Tab = function Tab(option) {
+	  _classCallCheck(this, Tab);
+	
+	  this.name = option.name || '';
+	};
+	
+	var TabManager = function () {
+	  function TabManager() {
+	    _classCallCheck(this, TabManager);
+	
+	    this.tabList = [];
+	  }
+	
+	  _createClass(TabManager, [{
+	    key: 'getByName',
+	    value: function getByName(name) {
+	      var present = this.tabList.findIndex(function (tab) {
+	        return tab.name === name;
+	      });
+	      if (present >= 0) return this.tabList[present];
+	      var newTab = new Tab({ name: name });
+	      this.tabList.push(newTab);
+	      return newTab;
+	    }
+	  }]);
+	
+	  return TabManager;
+	}();
+	
+	var MenuItem = function MenuItem(option) {
+	  _classCallCheck(this, MenuItem);
+	
+	  this.name = option.name || '';
+	  this.tab = option.tab || '';
+	};
+	
+	var Menu = function () {
+	  function Menu() {
+	    _classCallCheck(this, Menu);
+	
+	    this.list = [];
+	    this.tabManager = new TabManager();
+	    this.active = null;
+	  }
+	
+	  _createClass(Menu, [{
+	    key: 'addMenu',
+	    value: function addMenu(option) {
+	      var tab = this.tabManager.getByName(option.tabName);
+	      var newItem = new MenuItem({
+	        name: option.name,
+	        tab: tab
+	      });
+	      this.list.push(newItem);
+	    }
+	  }]);
+	
+	  return Menu;
+	}();
+	
+	exports.default = Menu;
 
 /***/ }
 /******/ ]);
