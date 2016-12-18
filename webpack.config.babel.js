@@ -15,5 +15,4 @@ export default {
   resolve: {
     extensions: ['', '.js', '.jsx'],
   },
-  target: 'electron',
 };

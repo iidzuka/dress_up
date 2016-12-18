@@ -1,7 +1,7 @@
 {
   "name": "anime_graph",
   "version": "1.0.0",
-  "main": "./dist/js/client-bundle.js",
+  "main": "./dist/js/electron.js",
   "repository": "git@github.com:iidzuka/anime_graph.git",
   "author": "iidzuka <taki.hiyoshi@gmail.com>",
   "license": "MIT",

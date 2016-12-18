@@ -21,6 +21,7 @@ const paths = {
   serverSrcJs: 'src/server/**/*.js',
   sharedSrcJs: 'src/shared/**/*.js',
   clientEntryPoint: 'src/client/app.js',
+  electron: 'src/client/electron.js',
   gulpFile: 'gulpfile.babel.js',
   webpackFile: 'webpack.config.babel.js',
   clientBundle: 'dist/client-bundle.js?(.map)',
@@ -50,9 +51,15 @@ gulp.task('build', ['lint', 'clean', 'pug', 'sass'], () =>
     .pipe(gulp.dest(paths.libDir)),
 );
 
-gulp.task('main', ['test'], () =>
+gulp.task('main', ['test', 'electron'], () =>
   gulp.src(paths.clientEntryPoint)
     .pipe(webpack(webpackConfig))
+    .pipe(gulp.dest(paths.js)),
+);
+
+gulp.task('electron', () =>
+  gulp.src(paths.electron)
+    .pipe(babel())
     .pipe(gulp.dest(paths.js)),
 );
 
