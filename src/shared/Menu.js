@@ -1,15 +1,9 @@
 class MenuItem {
   constructor(option) {
     this.name = option.name || null;
-    this.tag = option.tag || null;
+    this.item = option.item || null;
     this.action = option.action || null;
   }
-}
-
-class DressItem extends MenuItem {
-}
-
-class ButtonItem extends MenuItem {
 }
 
 export default class Menu {
@@ -19,18 +13,10 @@ export default class Menu {
   }
 
   addMenu(option) {
-    let newItem;
-    if (option.type === 'dress') {
-      newItem = new DressItem({
-        name: option.name,
-        tag: option.tag,
-      });
-    } else {
-      newItem = new ButtonItem({
-        name: option.name,
-        tag: option.tag,
-      });
-    }
+    const newItem = new MenuItem({
+      name: option.name,
+      item: option.item,
+    });
     this.list.push(newItem);
   }
 }

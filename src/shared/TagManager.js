@@ -10,11 +10,19 @@ export default class TagManager {
     this.tagList = [];
   }
 
-  getByNameAndType(name, type) {
-    const present = this.tagList.findIndex(tag => tag.name === name && tag.type === type);
-    if (present >= 0) return this.tagList[present];
+  addTag(option) {
+    const name = option.name || null;
+    const type = option.type || null;
+    const present = this.getTag(option);
+    if (present) return;
     const newTab = new Tag({ name, type });
     this.tagList.push(newTab);
-    return newTab;
+  }
+
+  getTag(option) {
+    const name = option.name || null;
+    const type = option.type || null;
+    const present = this.tagList.find(tag => tag.name === name && tag.type === type);
+    return present;
   }
 }
