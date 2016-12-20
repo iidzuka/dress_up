@@ -34,7 +34,8 @@
     "browser-sync": "^2.18.5",
     "electron": "^1.4.12",
     "gulp-notify": "^2.2.0",
-    "gulp-plumber": "^1.1.0"
+    "gulp-plumber": "^1.1.0",
+    "jquery-ui": "^1.12.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
