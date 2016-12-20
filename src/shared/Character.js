@@ -1,3 +1,4 @@
+
 /* 着せ替えされるCharacter
  *
  */
@@ -28,5 +29,8 @@ export default class Charactor {
 
   updateDisplay() {
     this.regard += 1;
+  }
+  render(target) {
+    
   }
 }

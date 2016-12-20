@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import Menu from '../shared/Menu';
 import TagManager from '../shared/TagManager';
 import Inventory from '../shared/Inventory';
@@ -6,6 +7,10 @@ import Character from '../shared/Character';
 const menu = new Menu();
 const tagManager = new TagManager();
 const inventory = new Inventory();
+
+require('jquery-ui/ui/core');
+require('jquery-ui/ui/widget');
+require('jquery-ui/ui/widgets/draggable');
 
 tagManager.addTag({ name: 'main', type: 'menu' });
 tagManager.addTag({ name: 'head', type: 'dress' });
@@ -23,9 +28,12 @@ menu.addMenu({ name: 'topsDress1', item: inventory.getItem('shirt') });
 menu.addMenu({ name: 'botomsDress1', item: inventory.getItem('skirt') });
 menu.addMenu({ name: 'footDress1', item: inventory.getItem('shoes') });
 
-const chara = new Character({
-  name: 'suwako',
-  normalImageUrl: 'image/suwako.png',
-  sdImageUrl: 'image/suwako_sd.png',
+$(() => {
+  $('.gameArea').draggable();
+  const chara = new Character({
+    name: 'suwako',
+    normalImageUrl: 'image/suwako.png',
+    sdImageUrl: 'image/suwako_sd.png',
+  });
+  console.log(menu, chara, inventory);
 });
-console.log(menu, chara, inventory);
