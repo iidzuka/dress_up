@@ -1,15 +1,23 @@
+import $ from 'jquery';
 
+require('jquery-ui/ui/core');
+require('jquery-ui/ui/widget');
+require('jquery-ui/ui/widgets/droppable');
 /* 着せ替えされるCharacter
  *
  */
 export default class Charactor {
   constructor(option) {
-    this.name = option.name;
-    this.regard = 0;
-    this.normalImageUrl = option.normalImageUrl;
-    this.sdImageUrl = option.sdImageUrl;
-    this.dressingPlace = option.dressingPlace;
-    this.dressList = option.dressList;
+    const options = option || {};
+    if (typeof options === 'object') {
+      this.name = option.name;
+      this.regard = 0;
+      this.normalImageUrl = option.normalImageUrl;
+      this.sdImageUrl = option.sdImageUrl;
+      this.dressingPlace = option.dressingPlace;
+      this.dressList = option.dressList;
+      this.type = option.type;
+    }
   }
 
   update(option) {
@@ -30,7 +38,30 @@ export default class Charactor {
   updateDisplay() {
     this.regard += 1;
   }
-  render(target) {
-    
+
+  render($target) {
+    const $characterImage = $('<img />');
+    $characterImage.attr('src', this.normalImageUrl);
+    $characterImage.attr('height', '100%');
+    $characterImage.attr('width', 'auto');
+    $characterImage.droppable({
+      drop: (e, u) => {
+        if (this.type === 'normal') {
+          $(u).data('test');
+          this.setDress();
+        }
+      },
+    });
+    this.$characterImage = $characterImage;
+    $target.append($characterImage);
+  }
+
+  changeImage(type) {
+    let url = this.normalImageUrl;
+    this.type = type;
+    if (type === 'sd') {
+      url = this.sdImageUrl;
+    }
+    this.$character.attr('src', url);
   }
 }

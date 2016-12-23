@@ -29,11 +29,19 @@ menu.addMenu({ name: 'botomsDress1', item: inventory.getItem('skirt') });
 menu.addMenu({ name: 'footDress1', item: inventory.getItem('shoes') });
 
 $(() => {
-  $('.gameArea').draggable();
   const chara = new Character({
     name: 'suwako',
     normalImageUrl: 'image/suwako.png',
-    sdImageUrl: 'image/suwako_sd.png',
+    sdImageUrl: 'image/suwako_dot.png',
+    dressingPlace: [
+      tagManager.getTag({ name: 'head', type: 'dress' }),
+      tagManager.getTag({ name: 'tops', type: 'dress' }),
+      tagManager.getTag({ name: 'botoms', type: 'dress' }),
+      tagManager.getTag({ name: 'foot', type: 'dress' }),
+    ],
   });
+  menu.render($('.menu'));
+  chara.render($('.mainWindow'));
+//  chara.changeImage('sd');
   console.log(menu, chara, inventory);
 });

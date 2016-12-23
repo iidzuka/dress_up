@@ -3,6 +3,10 @@ class Tag {
     this.name = option.name || null;
     this.type = option.type || null;
   }
+
+  getTagName() {
+    return this.name;
+  }
 }
 
 export default class TagManager {
