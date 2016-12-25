@@ -15,7 +15,7 @@ export default class Charactor {
       this.normalImageUrl = option.normalImageUrl;
       this.sdImageUrl = option.sdImageUrl;
       this.dressingPlace = option.dressingPlace;
-      this.dressList = option.dressList;
+      this.dressList = option.dressList || [];
       this.type = option.type;
     }
   }
@@ -47,7 +47,8 @@ export default class Charactor {
     $characterImage.droppable({
       drop: (e, u) => {
         if (this.type === 'normal') {
-          $(u).data('test');
+          $(u).find('icon').data('id');
+          console.log($(u).find('icon'));
           this.setDress();
         }
       },

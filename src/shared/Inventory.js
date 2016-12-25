@@ -1,8 +1,12 @@
+import $ from 'jquery';
+
 class Item {
   constructor(option) {
     this.name = option.name || null;
     this.tag = option.tag || null;
-    this.id = option;
+    this.icon = option.icon || null;
+    this.image = option.image || null;
+    this.id = option.id;
   }
 
   scan(name, tag) {
@@ -10,6 +14,13 @@ class Item {
   }
   getTagName() {
     return this.tag.getTagName();
+  }
+  render(type) {
+    let $item;
+    if (type === 'icon') {
+      $item = $(`<img src="${this.icon}" class="icon" data-id="${this.id}"/>`);
+    }
+    return $item;
   }
 }
 
