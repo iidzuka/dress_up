@@ -59,6 +59,7 @@ $(() => {
       tagManager.getTag({ name: 'botoms', type: 'dress' }),
       tagManager.getTag({ name: 'foot', type: 'dress' }),
     ],
+    inventory,
   });
   menu.render($('.menu'));
   chara.render($('.mainWindow'));

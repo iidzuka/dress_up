@@ -39,4 +39,7 @@ export default class Inventory {
   getItem(name, tag) {
     return this.itemList.find(item => item.scan(name, tag));
   }
+  getItemById(id) {
+    return this.itemList.find(item => item.id === id);
+  }
 }

@@ -17,6 +17,7 @@ export default class Charactor {
       this.dressingPlace = option.dressingPlace;
       this.dressList = option.dressList || [];
       this.type = option.type;
+      this.allItem = option.inventory; 
     }
   }
 
@@ -26,10 +27,13 @@ export default class Charactor {
   }
 
   setDress(dressObject) {
+    console.log(dressObject);
     if (!dressObject) return;
     const canDress = this.dressingPlace.findIndex(dress => dress.tab === dressObject.tab);
+    console.log(canDress);
     if (canDress === -1) return;
     const dressIndex = this.dressList.findIndex(dress => dress.tab === dressObject.tab);
+    console.log(dressIndex);
     this.dressList.push(dressObject);
     if (dressIndex === -1) return;
     this.dressList.splice(dressObject, 1);
@@ -47,9 +51,9 @@ export default class Charactor {
     $characterImage.droppable({
       drop: (e, u) => {
         if (this.type === 'normal') {
-          $(u).find('icon').data('id');
-          console.log($(u).find('icon'));
-          this.setDress();
+          const itemId = $(u.draggable).find('.icon').data('id');
+          const item = this.allItem.getItemById(itemId);
+          this.setDress(item);
         }
       },
     });
