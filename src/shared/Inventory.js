@@ -20,6 +20,9 @@ class Item {
     if (type === 'icon') {
       $item = $(`<img src="${this.icon}" class="icon" data-id="${this.id}"/>`);
     }
+    if (type === 'dress') {
+      $item = $(`<img src="${this.image}" class="dress ${this.getTagName()}" data-id="${this.id}"/>`);
+    }
     return $item;
   }
 }

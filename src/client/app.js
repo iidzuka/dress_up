@@ -22,21 +22,25 @@ inventory.addItem({
   name: 'hat',
   tag: tagManager.getTag({ name: 'head', type: 'dress' }),
   icon: 'image/hat_icon.png',
+  image: 'image/hat.png',
 });
 inventory.addItem({
   name: 'shirt',
   tag: tagManager.getTag({ name: 'tops', type: 'dress' }),
   icon: 'image/shirt_icon.png',
+  image: 'image/tops.png',
 });
 inventory.addItem({
   name: 'skirt',
   tag: tagManager.getTag({ name: 'botoms', type: 'dress' }),
   icon: 'image/skirt_icon.png',
+  image: 'image/botoms.png',
 });
 inventory.addItem({
   name: 'shoes',
   tag: tagManager.getTag({ name: 'foot', type: 'dress' }),
   icon: 'image/shoes_icon.png',
+  image: 'image/shoes.png',
 });
 
 menu.addMenu({ name: 'headDress1', item: inventory.getItem('hat') });

@@ -27,24 +27,27 @@ export default class Charactor {
   }
 
   setDress(dressObject) {
-    console.log(dressObject);
     if (!dressObject) return;
-    const canDress = this.dressingPlace.findIndex(dress => dress.tab === dressObject.tab);
-    console.log(canDress);
+    const canDress = this.dressingPlace.findIndex(place => place === dressObject.tag);
     if (canDress === -1) return;
-    const dressIndex = this.dressList.findIndex(dress => dress.tab === dressObject.tab);
-    console.log(dressIndex);
+    const dressIndex = this.dressList.findIndex(dress => dress.tag === dressObject.tag);
+    console.log(dressIndex)
     this.dressList.push(dressObject);
     if (dressIndex === -1) return;
     this.dressList.splice(dressObject, 1);
   }
 
   updateDisplay() {
-    this.regard += 1;
+    this.$charArea.find('.dress').remove();
+    $.each(this.dressList, (i, dress) => {
+      this.$charArea.append(dress.render('dress'));
+    });
   }
 
   render($target) {
-    const $characterImage = $('<img />');
+    this.$charArea = $(`<div class="${this.name} charArea">`);
+    console.log(this.$charArea)
+    const $characterImage = $('<img class="character" />');
     $characterImage.attr('src', this.normalImageUrl);
     $characterImage.attr('height', '100%');
     $characterImage.attr('width', 'auto');
@@ -53,12 +56,13 @@ export default class Charactor {
         if (this.type === 'normal') {
           const itemId = $(u.draggable).find('.icon').data('id');
           const item = this.allItem.getItemById(itemId);
-          this.setDress(item);
+          this.update(item);
         }
       },
     });
     this.$characterImage = $characterImage;
-    $target.append($characterImage);
+    this.$charArea.append($characterImage);
+    $target.append(this.$charArea);
   }
 
   changeImage(type) {
