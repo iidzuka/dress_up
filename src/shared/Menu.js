@@ -16,6 +16,7 @@ class MenuItem {
     const $item = $('<div class="menu item"></div>');
     $item.draggable({
       helper: 'clone',
+      zIndex: '9999',
     });
     $item.append($icon);
     $target.append($item);
@@ -62,7 +63,7 @@ export default class Menu {
         $tab.addClass('active');
         $tabArea.addClass('active');
       }
-      $tab.on('click', e => {
+      $tab.on('click', (e) => {
         const t = $(e.target);
         $('.tabs .tab').removeClass('active');
         $('.tabArea .area').removeClass('active');
