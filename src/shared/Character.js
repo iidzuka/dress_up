@@ -17,7 +17,7 @@ export default class Charactor {
       this.dressingPlace = option.dressingPlace;
       this.dressList = option.dressList || [];
       this.type = option.type;
-      this.allItem = option.inventory; 
+      this.allItem = option.inventory;
     }
   }
 
@@ -31,10 +31,9 @@ export default class Charactor {
     const canDress = this.dressingPlace.findIndex(place => place === dressObject.tag);
     if (canDress === -1) return;
     const dressIndex = this.dressList.findIndex(dress => dress.tag === dressObject.tag);
-    console.log(dressIndex)
     this.dressList.push(dressObject);
     if (dressIndex === -1) return;
-    this.dressList.splice(dressObject, 1);
+    this.dressList.splice(dressIndex, 1);
   }
 
   updateDisplay() {
@@ -46,7 +45,6 @@ export default class Charactor {
 
   render($target) {
     this.$charArea = $(`<div class="${this.name} charArea">`);
-    console.log(this.$charArea)
     const $characterImage = $('<img class="character" />');
     $characterImage.attr('src', this.normalImageUrl);
     $characterImage.attr('height', '100%');
@@ -63,6 +61,7 @@ export default class Charactor {
     this.$characterImage = $characterImage;
     this.$charArea.append($characterImage);
     $target.append(this.$charArea);
+    this.updateDisplay();
   }
 
   changeImage(type) {
