@@ -25,10 +25,22 @@ inventory.addItem({
   image: 'image/hat.png',
 });
 inventory.addItem({
+  name: 'hat2',
+  tag: tagManager.getTag({ name: 'head', type: 'dress' }),
+  icon: 'image/hat_icon2.png',
+  image: 'image/hat2.png',
+});
+inventory.addItem({
   name: 'shirt',
   tag: tagManager.getTag({ name: 'tops', type: 'dress' }),
   icon: 'image/shirt_icon.png',
   image: 'image/tops.png',
+});
+inventory.addItem({
+  name: 'shirt2',
+  tag: tagManager.getTag({ name: 'tops', type: 'dress' }),
+  icon: 'image/shirt_icon2.png',
+  image: 'image/tops2.png',
 });
 inventory.addItem({
   name: 'skirt',
@@ -39,7 +51,7 @@ inventory.addItem({
 inventory.addItem({
   name: 'skirt2',
   tag: tagManager.getTag({ name: 'botoms', type: 'dress' }),
-  icon: 'image/skirt_icon.png',
+  icon: 'image/skirt_icon2.png',
   image: 'image/botoms2.png',
 });
 inventory.addItem({
@@ -48,14 +60,21 @@ inventory.addItem({
   icon: 'image/shoes_icon.png',
   image: 'image/shoes.png',
 });
+inventory.addItem({
+  name: 'shoes2',
+  tag: tagManager.getTag({ name: 'foot', type: 'dress' }),
+  icon: 'image/shoes_icon2.png',
+  image: 'image/shoes2.png',
+});
 
 menu.addMenu({ name: 'headDress1', item: inventory.getItem('hat') });
-menu.addMenu({ name: 'headDress2', item: inventory.getItem('hat') });
-menu.addMenu({ name: 'headDress3', item: inventory.getItem('hat') });
+menu.addMenu({ name: 'headDress2', item: inventory.getItem('hat2') });
 menu.addMenu({ name: 'topsDress1', item: inventory.getItem('shirt') });
+menu.addMenu({ name: 'topsDress2', item: inventory.getItem('shirt2') });
 menu.addMenu({ name: 'botomsDress1', item: inventory.getItem('skirt') });
 menu.addMenu({ name: 'botomsDress4', item: inventory.getItem('skirt2') });
 menu.addMenu({ name: 'footDress1', item: inventory.getItem('shoes') });
+menu.addMenu({ name: 'footDress2', item: inventory.getItem('shoes2') });
 
 $(() => {
   const chara = new Character({
@@ -73,6 +92,7 @@ $(() => {
       inventory.getItem('hat'),
       inventory.getItem('shirt'),
       inventory.getItem('skirt'),
+      inventory.getItem('shoes'),
     ],
     inventory,
   });
